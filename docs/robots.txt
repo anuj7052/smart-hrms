@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://anuj7052.github.io/smart-hrms/sitemap.xml

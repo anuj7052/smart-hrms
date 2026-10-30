@@ -1,6 +1,8 @@
-# SmartHRMS
+# Smart HRMS – Free Open Source HR Management System
 
-A full-stack Human Resource Management System with attendance tracking, leave management, and eSSL biometric device integration.
+**Smart HRMS** is a free, open-source Human Resource Management System (HRMS) with attendance tracking, leave management, WFH requests, reports, Azure AD SSO and eSSL biometric device integration.
+
+**Website:** https://anuj7052.github.io/smart-hrms/
 
 ## Tech Stack
 
