@@ -24,10 +24,10 @@ This guide walks you through migrating SmartHRMS from local MongoDB to **Azure D
 1. [portal.azure.com](https://portal.azure.com) → **Create a resource** → search **"Azure Database for PostgreSQL"**
 2. Pick **Flexible Server** (recommended)
 3. Settings:
-   - Server name: `smarthrms-pg`
+   - Server name: `<your-server-name>`
    - PostgreSQL version: **16**
    - Compute + storage: **Burstable B1ms** (cheapest, ~$13/mo)
-   - Admin username: `hrmsadmin`
+   - Admin username: `<your-admin-user>`
    - Password: (save it)
 4. **Networking** tab → Allow access from your IP **and** check "Allow public access from Azure services"
 5. Create → wait ~5 mins
