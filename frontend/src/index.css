@@ -1,0 +1,229 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer base {
+  :root {
+    --font-sans-premium: 'Manrope', 'Plus Jakarta Sans', Inter, system-ui, sans-serif;
+    --font-display-premium: 'Sora', 'Manrope', 'Plus Jakarta Sans', system-ui, sans-serif;
+    /* Fluid base font size: 14px at 320px → 16px at 1440px */
+    --fluid-base: clamp(0.875rem, 0.82rem + 0.18vw, 1rem);
+    /* Sidebar width token */
+    --sidebar-w: clamp(240px, 20vw, 292px);
+  }
+
+  * { box-sizing: border-box; }
+  html {
+    font-size: var(--fluid-base);
+  }
+  body {
+    @apply font-sans text-gray-900;
+    -webkit-font-smoothing: antialiased;
+    font-family: var(--font-sans-premium);
+    background-color: #f6faff;
+    background-image:
+      radial-gradient(circle at top right, rgba(88, 161, 220, 0.18), transparent 22%),
+      radial-gradient(circle at bottom left, rgba(14, 165, 233, 0.1), transparent 24%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(240, 246, 252, 0.96));
+  }
+  .dark body {
+    background-color: #0b1220;
+    background-image:
+      radial-gradient(circle at top right, rgba(88, 161, 220, 0.16), transparent 22%),
+      radial-gradient(circle at bottom left, rgba(14, 165, 233, 0.1), transparent 24%),
+      linear-gradient(180deg, rgba(11, 18, 32, 0.98), rgba(9, 17, 31, 1));
+  }
+  h1, h2, h3, h4, .page-title, .section-title {
+    font-family: var(--font-display-premium);
+    letter-spacing: -0.03em;
+  }
+  h5, h6 {
+    font-family: var(--font-sans-premium);
+  }
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { @apply bg-transparent; }
+  ::-webkit-scrollbar-thumb { @apply rounded-full bg-primary/25; }
+
+  /* Material Symbols icon helper */
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .material-symbols-outlined.fill {
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+
+  /* ESSL Live red border */
+  .live-border {
+    border: 1px solid #ef4444;
+  }
+}
+
+@layer components {
+  /* ── Buttons ── */
+  .btn-primary {
+    @apply relative overflow-hidden rounded-2xl px-4 py-2 text-sm font-semibold text-white shadow-glow-primary transition-all active:scale-95 disabled:cursor-not-allowed disabled:opacity-50;
+    background-image: linear-gradient(180deg, #0a7bb0 0%, #006591 55%, #004c6e 100%);
+  }
+  .btn-primary:hover {
+    @apply shadow-glow-primary-lg;
+    background-image: linear-gradient(180deg, #0d8cc4 0%, #0072a3 55%, #00567c 100%);
+  }
+  .btn-primary::before {
+    content: '';
+    @apply absolute inset-0 rounded-2xl bg-gradient-to-b from-white/20 to-transparent opacity-70 pointer-events-none;
+  }
+  .btn-secondary {
+    @apply rounded-2xl border border-primary/10 bg-white/90 px-4 py-2 text-sm font-semibold text-on-surface shadow-inset-highlight transition-all active:scale-95;
+  }
+  .btn-secondary:hover {
+    @apply border-primary/20 bg-surface-container-low text-primary;
+  }
+  .btn-danger {
+    @apply rounded-2xl px-4 py-2 text-sm font-semibold text-white transition-all active:scale-95;
+    background-color: #DC2626;
+    box-shadow: 0 10px 15px -3px rgb(220 38 38 / 0.25), 0 4px 6px -4px rgb(220 38 38 / 0.25);
+  }
+  .btn-danger:hover {
+    background-color: #B91C1C;
+  }
+  .btn-success {
+    @apply text-white px-4 py-2 rounded-xl active:scale-95 transition-all font-semibold text-sm shadow-md;
+    background-color: #16A34A;
+    box-shadow: 0 10px 15px -3px rgb(22 163 74 / 0.25), 0 4px 6px -4px rgb(22 163 74 / 0.25);
+  }
+  .btn-success:hover {
+    background-color: #15803D;
+  }
+
+  /* ── Inputs ── */
+  .input {
+    @apply w-full rounded-2xl border border-primary/10 bg-white/90 px-3.5 py-2.5 text-sm text-gray-900 shadow-inset-highlight transition placeholder:text-outline/60 focus:border-primary focus:outline-none focus:ring-[3px] focus:ring-primary/15;
+  }
+
+  /* ── Cards — match mobile Card component ── */
+  .card {
+    @apply rounded-[24px] border border-primary/10 bg-white/90 shadow-premium-card backdrop-blur-sm;
+  }
+  .card-elevated {
+    @apply rounded-[24px] border border-primary/10 bg-white/95 shadow-soft-high backdrop-blur-sm;
+  }
+
+  /* ── Skeleton ── */
+  .skeleton {
+    @apply animate-skeleton bg-gray-200 rounded-xl;
+  }
+
+  /* ── Badges — match mobile statusColor ── */
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold;
+  }
+  .badge-green  {
+    @apply badge;
+    background-color: rgb(22 163 74 / 0.1);
+    color: #16A34A;
+  }
+  .dark .badge-green {
+    color: #4ADE80;
+  }
+  .badge-red    {
+    @apply badge;
+    background-color: rgb(220 38 38 / 0.1);
+    color: #DC2626;
+  }
+  .dark .badge-red {
+    color: #F87171;
+  }
+  .badge-yellow {
+    @apply badge;
+    background-color: rgb(245 158 11 / 0.1);
+    color: #D97706;
+  }
+  .dark .badge-yellow {
+    color: #FBBF24;
+  }
+  .badge-blue   { @apply badge bg-primary-500/10 text-primary-600; }
+  .badge-gray   { @apply badge bg-gray-100 text-gray-600; }
+
+  /* ── Hero gradient header (matches mobile DashboardScreen hero) ── */
+  .hero-header {
+    background: linear-gradient(145deg, #022b47 0%, #0a4d78 55%, #0a395f 100%);
+    @apply text-white shadow-glow-primary;
+  }
+
+  /* ── Stat tiles ── */
+  .stat-tile {
+    @apply flex-1 flex flex-col items-center justify-center rounded-xl py-2 px-1.5 border sm:py-3 sm:px-2;
+  }
+  .stat-tile-value { font-size: clamp(18px, 2vw + 0.5rem, 24px); @apply font-black; }
+  .stat-tile-label { @apply text-[10px] font-medium text-center mt-0.5; }
+
+  /* ── Section heading ── */
+  .section-title {
+    @apply mb-3 text-sm font-bold uppercase tracking-[0.16em] text-gray-900;
+  }
+
+  /* ── Action tiles (matches mobile ActionTile) ── */
+  .action-tile {
+    @apply flex cursor-pointer flex-col items-start rounded-[24px] border border-primary/10 bg-white/90 p-4 shadow-premium-card transition-all active:scale-95 hover:-translate-y-0.5 hover:shadow-soft-high;
+  }
+  .action-tile-icon {
+    @apply relative w-11 h-11 rounded-xl flex items-center justify-center mb-3;
+  }
+  .action-tile-label {
+    @apply text-sm font-bold text-gray-900;
+  }
+
+  /* ── RBAC role badges ── */
+  .role-admin    { @apply px-2 py-0.5 rounded-full text-xs font-bold bg-amber-100 text-amber-700; }
+  .role-hr       { @apply px-2 py-0.5 rounded-full text-xs font-bold bg-blue-100 text-blue-700; }
+  .role-manager  { @apply px-2 py-0.5 rounded-full text-xs font-bold bg-green-100 text-green-700; }
+  .role-employee { @apply px-2 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-600; }
+
+  /* ── Live pulse indicator ── */
+  .live-indicator {
+    @apply flex items-center gap-1.5 text-xs font-bold text-success-600;
+  }
+  .live-dot {
+    @apply w-2 h-2 rounded-full bg-success-500 animate-pulse;
+  }
+
+  /* ── Glass card ── */
+  .card-glass {
+    @apply rounded-[24px] border border-white/50 bg-white/70 shadow-premium-card backdrop-blur-md;
+  }
+
+  /* ── Page header ── */
+  .page-header {
+    @apply mb-5 flex flex-wrap items-start justify-between gap-3 sm:mb-7 sm:gap-4;
+  }
+  .page-title {
+    font-size: clamp(24px, 3vw + 0.5rem, 38px);
+    @apply font-bold leading-[1.08] text-gray-900;
+  }
+  .page-subtitle {
+    @apply mt-1 text-body-sm text-gray-500 sm:mt-1.5;
+  }
+
+  /* ── Table improvements ── */
+  .table-header-cell {
+    @apply px-3 py-2.5 text-left text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-500 sm:px-5 sm:py-3;
+  }
+  .table-cell {
+    @apply px-3 py-3 text-sm sm:px-5 sm:py-3.5;
+  }
+  .table-row {
+    @apply hover:bg-gray-50:bg-gray-900/40 transition-colors;
+  }
+}

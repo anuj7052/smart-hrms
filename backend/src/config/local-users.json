@@ -1,0 +1,340 @@
+[
+  {
+    "id": "usr_employee",
+    "name": "Rahul Employee",
+    "email": "rahul@foetron.com",
+    "role": "Employee",
+    "department": "Engineering",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_manager",
+    "name": "Sam Manager",
+    "email": "manager@foetron.com",
+    "role": "Manager",
+    "department": "Engineering",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_hr",
+    "name": "Priya HR",
+    "email": "hr@foetron.com",
+    "role": "HR",
+    "department": "Human Resources",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_admin",
+    "name": "Anuj Admin",
+    "email": "anuj@foetron.com",
+    "role": "Admin",
+    "department": "Administration",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs011",
+    "name": "Amit Goel",
+    "email": "amit.goel@foetron.com",
+    "role": "Employee",
+    "department": "Tech Support Group",
+    "phone": "8826294742",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs022",
+    "name": "Abhinav Yadav",
+    "email": "t-abhinav.yadav@foetron.com",
+    "role": "Employee",
+    "department": "Data and AI",
+    "phone": "9971208044",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs001",
+    "name": "Abhishek Thakur",
+    "email": "abhishek.thakur@foetron.com",
+    "role": "Employee",
+    "department": "Operations",
+    "phone": "9857813785",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs021",
+    "name": "Anuj Singh",
+    "email": "t-anuj.singh@foetron.com",
+    "role": "Employee",
+    "department": "Data and AI",
+    "phone": "6302686466",
+    "passwordHash": "$2a$10$TYMVFgmExN27/YeK0eLQ8O8jTO3GAB9cENVxGK3cqFeNi67jFUjZy"
+  },
+  {
+    "id": "usr_fcs002",
+    "name": "Balakrishnan Periswamy",
+    "email": "leave@foetron.com",
+    "role": "Employee",
+    "department": "Operations",
+    "phone": "7982999251",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs030",
+    "name": "Deepak Goel",
+    "email": "deepak.goel@foetron.com",
+    "role": "Employee",
+    "department": "Tech Support Group",
+    "phone": "9711148173",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs026",
+    "name": "Diksha Gurrani",
+    "email": "diksha.gurrani@foetron.com",
+    "role": "Employee",
+    "department": "Finance",
+    "phone": "8384853072",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs014",
+    "name": "Ekta Singh",
+    "email": "t-ekta.singh@foetron.com",
+    "role": "Employee",
+    "department": "General",
+    "phone": "9616644747",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcspl017",
+    "name": "HR Admin",
+    "email": "arun@foetron.com",
+    "role": "HR",
+    "department": "Human Resources",
+    "phone": "9810496424",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs020",
+    "name": "Jatin Rao Yadav",
+    "email": "t-jatin.yadav@foetron.com",
+    "role": "Employee",
+    "department": "Tech Support Group",
+    "phone": "8295789365",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs009",
+    "name": "Kapil Verma",
+    "email": "kapil.verma@foetron.com",
+    "role": "Employee",
+    "department": "Finance",
+    "phone": "9716673944",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs032",
+    "name": "Kumar Kislaya",
+    "email": "kumar.kislaya@foetron.com",
+    "role": "Employee",
+    "department": "Cloud Sales Consultant",
+    "phone": "7004700629",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs012",
+    "name": "Laxmi Panchal",
+    "email": "finance@foetron.com",
+    "role": "Employee",
+    "department": "Finance",
+    "phone": "8826294788",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs005",
+    "name": "Manish Gupta",
+    "email": "manish.gupta@foetron.com",
+    "role": "Admin",
+    "department": "Management",
+    "phone": "9999538123",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs023",
+    "name": "Manish Yadav",
+    "email": "t-manish.yadav@foetron.com",
+    "role": "Employee",
+    "department": "Data and AI",
+    "phone": "8375865290",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs003",
+    "name": "Manoj Sharma",
+    "email": "manoj.sharma@foetron.com",
+    "role": "Admin",
+    "department": "Management",
+    "phone": "8826294740",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs018",
+    "name": "Megha Devrani",
+    "email": "megha.devrani@foetron.com",
+    "role": "Employee",
+    "department": "Tech Support Group",
+    "phone": "7895971813",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs015",
+    "name": "Meghna Jaiswal",
+    "email": "meghna.jaiswal@foetron.com",
+    "role": "Employee",
+    "department": "Cloud Sales Consultant",
+    "phone": "8130954349",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs010",
+    "name": "Mohit Kashyap",
+    "email": "mohit.kashyap@foetron.com",
+    "role": "Manager",
+    "department": "Cloud Sales Consultant",
+    "phone": "8447945681",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs008",
+    "name": "Om Shanker",
+    "email": "om.lohia@foetron.com",
+    "role": "Manager",
+    "department": "Operations",
+    "phone": "9717236271",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs024",
+    "name": "Paras Sharma",
+    "email": "t-paras.sharma@foetron.com",
+    "role": "Employee",
+    "department": "Tech Support Group",
+    "phone": "9599320151",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs025",
+    "name": "Parth Sharma",
+    "email": "t-parth.sharma@foetron.com",
+    "role": "Employee",
+    "department": "Data and AI",
+    "phone": "8010195974",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs028",
+    "name": "Pooja Sisodia",
+    "email": "fin-pooja@foetron.com",
+    "role": "Employee",
+    "department": "Finance",
+    "phone": "8700755414",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs007",
+    "name": "Priyanka Gupta",
+    "email": "priyanka.gupta@foetron.com",
+    "role": "Employee",
+    "department": "Cloud Sales Consultant",
+    "phone": "9716349660",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs000",
+    "name": "Rajni Gupta",
+    "email": "rajni.gupta@foetron.com",
+    "role": "Employee",
+    "department": "General",
+    "phone": "9999836067",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs017",
+    "name": "Rijul Sharma",
+    "email": "rijul.sharma@foetron.com",
+    "role": "Manager",
+    "department": "Tech Support Group",
+    "phone": "8800894278",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs019",
+    "name": "Ritika Khandelwal",
+    "email": "ritika.khandelwal@foetron.com",
+    "role": "Employee",
+    "department": "Cloud Sales Consultant",
+    "phone": "9711565491",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs013",
+    "name": "Rohit Yadav",
+    "email": "rohit.yadav@foetron.com",
+    "role": "Employee",
+    "department": "Tech Support Group",
+    "phone": "8384032499",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs029",
+    "name": "Sahil Yadav",
+    "email": "t-sahil.yadav@foetron.com",
+    "role": "Employee",
+    "department": "Tech Support Group",
+    "phone": "8168632635",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs027",
+    "name": "Sangeeta Gupta",
+    "email": "fin-corp@foetron.com",
+    "role": "Employee",
+    "department": "Finance",
+    "phone": "7827481270",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs006",
+    "name": "Saurabh Sharma",
+    "email": "saurabh.sharma@foetron.com",
+    "role": "Employee",
+    "department": "Tech Support Group",
+    "phone": "8800895444",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs004",
+    "name": "Seema Sharma",
+    "email": "seema.sharma@foetron.com",
+    "role": "Employee",
+    "department": "General",
+    "phone": "9811966916",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_t0002",
+    "name": "Shiv Kumar",
+    "email": "shiv.kumar@foetron.com",
+    "role": "Employee",
+    "department": "Cloud Sales Consultant",
+    "phone": "9810515320",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  },
+  {
+    "id": "usr_fcs031",
+    "name": "Shivani Yadav",
+    "email": "shivani.yadav@foetron.com",
+    "role": "Employee",
+    "department": "Tech Support Group",
+    "phone": "9910476962",
+    "passwordHash": "$2a$10$O5e/0N/0zqZi3iSexrKrY.AMQup4Z.LEjh5CDNL2eCyQsteaLg60q"
+  }
+]

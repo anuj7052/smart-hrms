@@ -1,0 +1,39 @@
+name: Mobile OTA Update
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'mobile/**'
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Update message'
+        required: false
+        default: 'Code update'
+
+jobs:
+  ota-update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+          cache-dependency-path: mobile/package-lock.json
+
+      - name: Install dependencies
+        working-directory: mobile
+        run: npm ci
+
+      - name: Publish OTA update (preview branch)
+        working-directory: mobile
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: |
+          MESSAGE="${{ github.event.inputs.message || github.event.head_commit.message }}"
+          npx eas-cli update --branch preview --message "$MESSAGE" --non-interactive

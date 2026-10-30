@@ -1,0 +1,86 @@
+name: Trigger auto deployment for sphere-app
+
+# When this action will be executed
+on:
+  # Automatically trigger it when detected changes in repo
+  push:
+    branches: 
+      [ main ]
+    paths:
+    - '**'
+    - '.github/workflows/sphere-app-AutoDeployTrigger-6c209af0-b469-495c-8670-3b6fddb1c80f.yml'
+
+  # Allow manual trigger 
+  workflow_dispatch:
+      
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout to the branch
+        uses: actions/checkout@v4
+
+      - name: Validate Microsoft login configuration
+        env:
+          CLIENT_ID: ${{ secrets.VITE_AZURE_AD_CLIENT_ID }}
+          TENANT_ID: ${{ secrets.VITE_AZURE_AD_TENANT_ID }}
+        run: |
+          test -n "$CLIENT_ID" || { echo "::error::Missing VITE_AZURE_AD_CLIENT_ID secret"; exit 1; }
+          test -n "$TENANT_ID" || { echo "::error::Missing VITE_AZURE_AD_TENANT_ID secret"; exit 1; }
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.SPHEREAPP_AZURE_CREDENTIALS }}
+
+      - name: Resolve application origin
+        id: application
+        run: |
+          HOST=$(az containerapp show --name sphere-app --resource-group sphere \
+            --query properties.configuration.ingress.fqdn --output tsv)
+          test -n "$HOST" || { echo "::error::Container App hostname is missing"; exit 1; }
+          echo "origin=https://$HOST" >> "$GITHUB_OUTPUT"
+
+      - name: Configure database and session secrets
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          JWT_REFRESH_SECRET: ${{ secrets.JWT_REFRESH_SECRET }}
+        run: |
+          test -n "$DATABASE_URL" && test -n "$JWT_SECRET" && test -n "$JWT_REFRESH_SECRET" || {
+            echo "::error::Database and session secrets must be configured"; exit 1;
+          }
+          az containerapp secret set --name sphere-app --resource-group sphere \
+            --secrets "database-url=$DATABASE_URL" "jwt-secret=$JWT_SECRET" \
+            "jwt-refresh-secret=$JWT_REFRESH_SECRET" --output none
+
+      - name: Build and push container image to registry
+        uses: azure/container-apps-deploy-action@v2
+        with:
+          appSourcePath: ${{ github.workspace }}
+          dockerfilePath: Dockerfile
+          buildArguments: >-
+            VITE_AZURE_AD_CLIENT_ID=${{ secrets.VITE_AZURE_AD_CLIENT_ID }}
+            VITE_AZURE_AD_TENANT_ID=${{ secrets.VITE_AZURE_AD_TENANT_ID }}
+          environmentVariables: >-
+            AZURE_AD_CLIENT_ID=${{ secrets.VITE_AZURE_AD_CLIENT_ID }}
+            AZURE_AD_TENANT_ID=${{ secrets.VITE_AZURE_AD_TENANT_ID }}
+            PUBLIC_APP_ORIGIN=${{ steps.application.outputs.origin }}
+            DATABASE_URL=secretref:database-url
+            JWT_SECRET=secretref:jwt-secret
+            JWT_REFRESH_SECRET=secretref:jwt-refresh-secret
+          targetPort: 5000
+          registryUrl: sphereacr21961.azurecr.io
+          registryUsername: ${{ secrets.SPHEREAPP_REGISTRY_USERNAME }}
+          registryPassword: ${{ secrets.SPHEREAPP_REGISTRY_PASSWORD }}
+          containerAppName: sphere-app
+          resourceGroup: sphere
+          imageToBuild: sphereacr21961.azurecr.io/sphere-app:${{ github.sha }}
+
+      - name: Verify application health
+        run: |
+          URL=$(az containerapp show --name sphere-app --resource-group sphere \
+            --query properties.configuration.ingress.fqdn --output tsv)
+          curl --fail --silent --show-error --retry 12 --retry-delay 10 \
+            --retry-all-errors --max-time 30 "https://$URL/api/health"

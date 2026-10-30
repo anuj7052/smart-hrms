@@ -1,0 +1,19 @@
+{
+  "name": "smarthrms-essl-proxy",
+  "version": "1.0.0",
+  "description": "Tiny Node proxy: eTimeTrackLite SOAP -> JSON for SmartHRMS mobile",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.7",
+    "axios-cookiejar-support": "^6.0.5",
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "fast-xml-parser": "^4.5.0",
+    "tough-cookie": "^6.0.1",
+    "xlsx": "^0.18.5"
+  }
+}

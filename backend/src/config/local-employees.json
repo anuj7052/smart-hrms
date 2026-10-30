@@ -1,0 +1,648 @@
+[
+  {
+    "_id": "emp_fcs011",
+    "userId": {
+      "_id": "usr_fcs011",
+      "name": "Amit Goel",
+      "email": "amit.goel@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "FCS011",
+    "department": "Tech Support Group",
+    "designation": "",
+    "shift": "General",
+    "joinDate": "2021-11-28T00:00:00.000Z",
+    "phone": "8826294742",
+    "isActive": false,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_fcs022",
+    "userId": {
+      "_id": "usr_fcs022",
+      "name": "Abhinav Yadav",
+      "email": "t-abhinav.yadav@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "FCS022",
+    "department": "Data and AI",
+    "designation": "Intern",
+    "shift": "General",
+    "joinDate": "2024-09-24T00:00:00.000Z",
+    "phone": "9971208044",
+    "isActive": true,
+    "empType": "Intern"
+  },
+  {
+    "_id": "emp_fcs001",
+    "userId": {
+      "_id": "usr_fcs001",
+      "name": "Abhishek Thakur",
+      "email": "abhishek.thakur@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "FCS001",
+    "department": "Operations",
+    "designation": "Operations Executive",
+    "shift": "General",
+    "joinDate": "2019-10-10T00:00:00.000Z",
+    "phone": "9857813785",
+    "isActive": true,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_fcs021",
+    "userId": {
+      "_id": "usr_fcs021",
+      "name": "Anuj Singh",
+      "email": "t-anuj.singh@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "FCS021",
+    "department": "Data and AI",
+    "designation": "Software Developer Intern",
+    "shift": "General",
+    "joinDate": "2024-09-03T00:00:00.000Z",
+    "phone": "6302686466",
+    "isActive": true,
+    "empType": "Intern"
+  },
+  {
+    "_id": "emp_fcs002",
+    "userId": {
+      "_id": "usr_fcs002",
+      "name": "Balakrishnan Periswamy",
+      "email": "leave@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "FCS002",
+    "department": "Operations",
+    "designation": "Operations Executive",
+    "shift": "General",
+    "joinDate": "2021-03-08T00:00:00.000Z",
+    "phone": "7982999251",
+    "isActive": true,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_fcs030",
+    "userId": {
+      "_id": "usr_fcs030",
+      "name": "Deepak Goel",
+      "email": "deepak.goel@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "FCS030",
+    "department": "Tech Support Group",
+    "designation": "Network Engineer",
+    "shift": "General",
+    "joinDate": "2025-12-01T00:00:00.000Z",
+    "phone": "9711148173",
+    "isActive": true,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_fcs026",
+    "userId": {
+      "_id": "usr_fcs026",
+      "name": "Diksha Gurrani",
+      "email": "diksha.gurrani@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "FCS026",
+    "department": "Finance",
+    "designation": "Finance Intern",
+    "shift": "General",
+    "joinDate": "2025-08-22T00:00:00.000Z",
+    "phone": "8384853072",
+    "isActive": false,
+    "empType": "Intern"
+  },
+  {
+    "_id": "emp_fcs014",
+    "userId": {
+      "_id": "usr_fcs014",
+      "name": "Ekta Singh",
+      "email": "t-ekta.singh@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "FCS014",
+    "department": "General",
+    "designation": "",
+    "shift": "General",
+    "joinDate": "2023-03-20T00:00:00.000Z",
+    "phone": "9616644747",
+    "isActive": false,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_fcspl017",
+    "userId": {
+      "_id": "usr_fcspl017",
+      "name": "HR Admin",
+      "email": "arun@foetron.com",
+      "role": "HR"
+    },
+    "employeeId": "FCSPL017",
+    "department": "Human Resources",
+    "designation": "HR Executive",
+    "shift": "General",
+    "joinDate": "2023-04-10T00:00:00.000Z",
+    "phone": "9810496424",
+    "isActive": true,
+    "empType": "Part Time"
+  },
+  {
+    "_id": "emp_fcs020",
+    "userId": {
+      "_id": "usr_fcs020",
+      "name": "Jatin Rao Yadav",
+      "email": "t-jatin.yadav@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "FCS020",
+    "department": "Tech Support Group",
+    "designation": "Tech Support Intern",
+    "shift": "General",
+    "joinDate": "2024-09-09T00:00:00.000Z",
+    "phone": "8295789365",
+    "isActive": true,
+    "empType": "Intern"
+  },
+  {
+    "_id": "emp_fcs009",
+    "userId": {
+      "_id": "usr_fcs009",
+      "name": "Kapil Verma",
+      "email": "kapil.verma@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "FCS009",
+    "department": "Finance",
+    "designation": "Finance Executive",
+    "shift": "General",
+    "joinDate": "2022-01-11T00:00:00.000Z",
+    "phone": "9716673944",
+    "isActive": false,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_fcs032",
+    "userId": {
+      "_id": "usr_fcs032",
+      "name": "Kumar Kislaya",
+      "email": "kumar.kislaya@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "FCS032",
+    "department": "Cloud Sales Consultant",
+    "designation": "Sales Executive",
+    "shift": "General",
+    "joinDate": "2026-03-09T00:00:00.000Z",
+    "phone": "7004700629",
+    "isActive": true,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_fcs012",
+    "userId": {
+      "_id": "usr_fcs012",
+      "name": "Laxmi Panchal",
+      "email": "finance@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "FCS012",
+    "department": "Finance",
+    "designation": "Finance Executive",
+    "shift": "General",
+    "joinDate": "2021-09-15T00:00:00.000Z",
+    "phone": "8826294788",
+    "isActive": false,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_fcs005",
+    "userId": {
+      "_id": "usr_fcs005",
+      "name": "Manish Gupta",
+      "email": "manish.gupta@foetron.com",
+      "role": "Admin"
+    },
+    "employeeId": "FCS005",
+    "department": "Management",
+    "designation": "Director",
+    "shift": "General",
+    "joinDate": "2022-10-01T00:00:00.000Z",
+    "phone": "9999538123",
+    "isActive": true,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_fcs023",
+    "userId": {
+      "_id": "usr_fcs023",
+      "name": "Manish Yadav",
+      "email": "t-manish.yadav@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "FCS023",
+    "department": "Data and AI",
+    "designation": "AI Intern",
+    "shift": "General",
+    "joinDate": "2024-11-25T00:00:00.000Z",
+    "phone": "8375865290",
+    "isActive": true,
+    "empType": "Intern"
+  },
+  {
+    "_id": "emp_fcs003",
+    "userId": {
+      "_id": "usr_fcs003",
+      "name": "Manoj Sharma",
+      "email": "manoj.sharma@foetron.com",
+      "role": "Admin"
+    },
+    "employeeId": "FCS003",
+    "department": "Management",
+    "designation": "CEO",
+    "shift": "General",
+    "joinDate": "2021-10-01T00:00:00.000Z",
+    "phone": "8826294740",
+    "isActive": true,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_fcs018",
+    "userId": {
+      "_id": "usr_fcs018",
+      "name": "Megha Devrani",
+      "email": "megha.devrani@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "FCS018",
+    "department": "Tech Support Group",
+    "designation": "Tech Support Executive",
+    "shift": "General",
+    "joinDate": "2023-08-01T00:00:00.000Z",
+    "phone": "7895971813",
+    "isActive": false,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_fcs015",
+    "userId": {
+      "_id": "usr_fcs015",
+      "name": "Meghna Jaiswal",
+      "email": "meghna.jaiswal@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "FCS015",
+    "department": "Cloud Sales Consultant",
+    "designation": "Sales Executive",
+    "shift": "General",
+    "joinDate": "2016-04-06T00:00:00.000Z",
+    "phone": "8130954349",
+    "isActive": true,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_fcs010",
+    "userId": {
+      "_id": "usr_fcs010",
+      "name": "Mohit Kashyap",
+      "email": "mohit.kashyap@foetron.com",
+      "role": "Manager"
+    },
+    "employeeId": "FCS010",
+    "department": "Cloud Sales Consultant",
+    "designation": "Sales Manager",
+    "shift": "General",
+    "joinDate": "2018-04-27T00:00:00.000Z",
+    "phone": "8447945681",
+    "isActive": true,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_fcs008",
+    "userId": {
+      "_id": "usr_fcs008",
+      "name": "Om Shanker",
+      "email": "om.lohia@foetron.com",
+      "role": "Manager"
+    },
+    "employeeId": "FCS008",
+    "department": "Operations",
+    "designation": "SCM Head",
+    "shift": "General",
+    "joinDate": "2021-10-07T00:00:00.000Z",
+    "phone": "9717236271",
+    "isActive": true,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_fcs024",
+    "userId": {
+      "_id": "usr_fcs024",
+      "name": "Paras Sharma",
+      "email": "t-paras.sharma@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "FCS024",
+    "department": "Tech Support Group",
+    "designation": "Cloud Support Engineer",
+    "shift": "General",
+    "joinDate": "2025-01-06T00:00:00.000Z",
+    "phone": "9599320151",
+    "isActive": true,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_fcs025",
+    "userId": {
+      "_id": "usr_fcs025",
+      "name": "Parth Sharma",
+      "email": "t-parth.sharma@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "FCS025",
+    "department": "Data and AI",
+    "designation": "Data and AI Intern",
+    "shift": "General",
+    "joinDate": "2025-06-12T00:00:00.000Z",
+    "phone": "8010195974",
+    "isActive": false,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_fcs028",
+    "userId": {
+      "_id": "usr_fcs028",
+      "name": "Pooja Sisodia",
+      "email": "fin-pooja@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "FCS028",
+    "department": "Finance",
+    "designation": "Finance Executive",
+    "shift": "General",
+    "joinDate": "2025-10-06T00:00:00.000Z",
+    "phone": "8700755414",
+    "isActive": true,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_fcs007",
+    "userId": {
+      "_id": "usr_fcs007",
+      "name": "Priyanka Gupta",
+      "email": "priyanka.gupta@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "FCS007",
+    "department": "Cloud Sales Consultant",
+    "designation": "Sales Executive",
+    "shift": "General",
+    "joinDate": "2022-04-18T00:00:00.000Z",
+    "phone": "9716349660",
+    "isActive": false,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_fcs000",
+    "userId": {
+      "_id": "usr_fcs000",
+      "name": "Rajni Gupta",
+      "email": "rajni.gupta@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "FCS000",
+    "department": "General",
+    "designation": "",
+    "shift": "General",
+    "joinDate": "2023-01-01T00:00:00.000Z",
+    "phone": "9999836067",
+    "isActive": true,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_fcs017",
+    "userId": {
+      "_id": "usr_fcs017",
+      "name": "Rijul Sharma",
+      "email": "rijul.sharma@foetron.com",
+      "role": "Manager"
+    },
+    "employeeId": "FCS017",
+    "department": "Tech Support Group",
+    "designation": "Tech Support Manager",
+    "shift": "General",
+    "joinDate": "2023-06-10T00:00:00.000Z",
+    "phone": "8800894278",
+    "isActive": true,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_fcs019",
+    "userId": {
+      "_id": "usr_fcs019",
+      "name": "Ritika Khandelwal",
+      "email": "ritika.khandelwal@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "FCS019",
+    "department": "Cloud Sales Consultant",
+    "designation": "Sales Executive",
+    "shift": "General",
+    "joinDate": "2023-10-04T00:00:00.000Z",
+    "phone": "9711565491",
+    "isActive": true,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_fcs013",
+    "userId": {
+      "_id": "usr_fcs013",
+      "name": "Rohit Yadav",
+      "email": "rohit.yadav@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "FCS013",
+    "department": "Tech Support Group",
+    "designation": "Tech Support Executive",
+    "shift": "General",
+    "joinDate": "2021-04-21T00:00:00.000Z",
+    "phone": "8384032499",
+    "isActive": true,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_fcs029",
+    "userId": {
+      "_id": "usr_fcs029",
+      "name": "Sahil Yadav",
+      "email": "t-sahil.yadav@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "FCS029",
+    "department": "Tech Support Group",
+    "designation": "Tech Support Intern",
+    "shift": "General",
+    "joinDate": "2025-11-03T00:00:00.000Z",
+    "phone": "8168632635",
+    "isActive": true,
+    "empType": "Intern"
+  },
+  {
+    "_id": "emp_fcs027",
+    "userId": {
+      "_id": "usr_fcs027",
+      "name": "Sangeeta Gupta",
+      "email": "fin-corp@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "FCS027",
+    "department": "Finance",
+    "designation": "Finance Executive",
+    "shift": "General",
+    "joinDate": "2025-10-06T00:00:00.000Z",
+    "phone": "7827481270",
+    "isActive": true,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_fcs006",
+    "userId": {
+      "_id": "usr_fcs006",
+      "name": "Saurabh Sharma",
+      "email": "saurabh.sharma@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "FCS006",
+    "department": "Tech Support Group",
+    "designation": "Tech Support Executive",
+    "shift": "General",
+    "joinDate": "2022-04-06T00:00:00.000Z",
+    "phone": "8800895444",
+    "isActive": false,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_fcs004",
+    "userId": {
+      "_id": "usr_fcs004",
+      "name": "Seema Sharma",
+      "email": "seema.sharma@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "FCS004",
+    "department": "General",
+    "designation": "",
+    "shift": "General",
+    "joinDate": "2021-01-10T00:00:00.000Z",
+    "phone": "9811966916",
+    "isActive": true,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_t0002",
+    "userId": {
+      "_id": "usr_t0002",
+      "name": "Shiv Kumar",
+      "email": "shiv.kumar@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "T0002",
+    "department": "Cloud Sales Consultant",
+    "designation": "Sales Executive",
+    "shift": "General",
+    "joinDate": "2024-11-25T00:00:00.000Z",
+    "phone": "9810515320",
+    "isActive": true,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_fcs031",
+    "userId": {
+      "_id": "usr_fcs031",
+      "name": "Shivani Yadav",
+      "email": "shivani.yadav@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "FCS031",
+    "department": "Tech Support Group",
+    "designation": "Tech Support Executive",
+    "shift": "General",
+    "joinDate": "2026-01-05T00:00:00.000Z",
+    "phone": "9910476962",
+    "isActive": false,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_employee",
+    "userId": {
+      "_id": "usr_employee",
+      "name": "Rahul Employee",
+      "email": "rahul@foetron.com",
+      "role": "Employee"
+    },
+    "employeeId": "TEST001",
+    "department": "Engineering",
+    "designation": "Software Engineer",
+    "shift": "General",
+    "joinDate": "2024-01-15T00:00:00.000Z",
+    "phone": "9999999001",
+    "isActive": true,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_manager",
+    "userId": {
+      "_id": "usr_manager",
+      "name": "Sam Manager",
+      "email": "manager@foetron.com",
+      "role": "Manager"
+    },
+    "employeeId": "TEST002",
+    "department": "Engineering",
+    "designation": "Engineering Manager",
+    "shift": "General",
+    "joinDate": "2023-06-01T00:00:00.000Z",
+    "phone": "9999999002",
+    "isActive": true,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_hr",
+    "userId": {
+      "_id": "usr_hr",
+      "name": "Priya HR",
+      "email": "hr@foetron.com",
+      "role": "HR"
+    },
+    "employeeId": "TEST003",
+    "department": "Human Resources",
+    "designation": "HR Executive",
+    "shift": "General",
+    "joinDate": "2023-01-10T00:00:00.000Z",
+    "phone": "9999999003",
+    "isActive": true,
+    "empType": "Full Time"
+  },
+  {
+    "_id": "emp_admin",
+    "userId": {
+      "_id": "usr_admin",
+      "name": "Anuj Admin",
+      "email": "anuj@foetron.com",
+      "role": "Admin"
+    },
+    "employeeId": "TEST004",
+    "department": "Administration",
+    "designation": "Admin",
+    "shift": "General",
+    "joinDate": "2022-01-01T00:00:00.000Z",
+    "phone": "9999999004",
+    "isActive": true,
+    "empType": "Full Time"
+  }
+]

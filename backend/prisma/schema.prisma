@@ -1,0 +1,412 @@
+// Prisma schema for SmartHRMS
+// Mirrors the existing 8 Mongoose models, ported to PostgreSQL
+//
+// To use:
+//   1. Set DATABASE_URL in .env
+//   2. Run: npx prisma migrate dev --name init
+//   3. Run: npx prisma generate
+//   4. Run: npm run db:migrate-from-mongo  (one-time data import)
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// USERS
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum UserRole {
+  Admin
+  HR
+  Manager
+  Employee
+}
+
+model User {
+  id                       String    @id @default(cuid())
+  name                     String
+  email                    String    @unique
+  entraObjectId            String?   @unique
+  entraTenantId            String?
+  passwordHash             String
+  role                     UserRole  @default(Employee)
+  department               String?
+  isEmailVerified          Boolean   @default(false)
+  emailVerificationToken   String?
+  emailVerificationExpiry  DateTime?
+  passwordResetToken       String?
+  passwordResetExpiry      DateTime?
+  refreshToken             String?
+  createdAt                DateTime  @default(now())
+  updatedAt                DateTime  @updatedAt
+
+  employee       Employee?
+  reviewedLeaves LeaveRequest[] @relation("LeaveReviewer")
+  reviewedWFH    WFHRequest[]   @relation("WFHReviewer")
+
+  @@index([email])
+  @@index([entraTenantId])
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// EMPLOYEES
+// ─────────────────────────────────────────────────────────────────────────────
+
+model Employee {
+  id                String   @id @default(cuid())
+  userId            String   @unique
+  employeeId        String   @unique
+  department        String
+  designation       String
+  managerName       String?  // Synced from Microsoft Entra
+  shift             String   @default("General")
+  shiftId           String?
+  joinDate          DateTime
+  phone             String?
+  address           String?
+  emergencyContact  String?
+  devicePin         String?
+  birthday          DateTime?
+  lastWorkingDate   DateTime?
+  virtualLoginEnabled Boolean @default(false)  // Allow virtual (remote) attendance without biometric
+  isActive          Boolean  @default(true)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  user           User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  shiftRef       Shift?           @relation(fields: [shiftId], references: [id])
+  attendanceLogs AttendanceLog[]
+  leaves         LeaveRequest[]
+  wfhRequests    WFHRequest[]
+  leaveBalances  LeaveBalance[]
+  virtualPunchLogs VirtualPunchLog[]
+
+  @@index([department])
+  @@index([employeeId])
+  @@index([devicePin])
+  @@index([isActive, department])  // employee list: filter active + dept
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// ATTENDANCE
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum AttendanceStatus {
+  Present
+  Absent
+  Late
+  HalfDay
+  Leave
+  Holiday
+  WeeklyOff
+}
+
+enum AttendanceMode {
+  Office
+  WFH
+  Field
+  ClientVisit
+}
+
+enum RegularizationStatus {
+  Pending
+  Approved
+  Rejected
+}
+
+model AttendanceLog {
+  id                          String                @id @default(cuid())
+  employeeId                  String
+  date                        DateTime              @db.Date
+  punchIn                     DateTime?
+  punchOut                    DateTime?
+  workHours                   Float?
+  status                      AttendanceStatus      @default(Absent)
+  attendanceMode              AttendanceMode?
+  punchInLat                  Float?
+  punchInLng                  Float?
+  punchInAddress              String?
+  punchOutLat                 Float?
+  punchOutLng                 Float?
+  punchOutAddress             String?
+  appPunched                  Boolean               @default(false)
+  source                      String                @default("device")
+  isRegularized               Boolean               @default(false)
+  regularizationReason        String?
+  regularizationStatus        RegularizationStatus?
+  regularizationRequestedAt   DateTime?
+  deviceId                    String?
+  createdAt                   DateTime              @default(now())
+  updatedAt                   DateTime              @updatedAt
+
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  device   Device?  @relation(fields: [deviceId], references: [id])
+
+  @@unique([employeeId, date])
+  @@index([date])
+  @@index([status])
+  @@index([employeeId, date])  // monthly-summary: logs per employee in date range
+  @@index([date, status])      // dashboard: today's status counts
+}
+
+model RawPunchLog {
+  id               String   @id @default(cuid())
+  deviceId         String
+  employeeDeviceId String
+  timestamp        DateTime
+  punchType        Int      @default(0)
+  raw              String?
+  createdAt        DateTime @default(now())
+
+  device Device @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+
+  @@unique([deviceId, employeeDeviceId, timestamp])
+  @@index([timestamp])
+  @@index([deviceId, timestamp])  // incremental sync: fetch new logs per device
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// DEVICES (eSSL biometric)
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum DeviceStatus {
+  Online
+  Offline
+  Unknown
+}
+
+model Device {
+  id            String       @id @default(cuid())
+  name          String
+  ip            String
+  port          Int          @default(80)
+  serialNumber  String       @unique
+  username      String
+  passwordHash  String
+  etlUsername   String?
+  etlPassword   String?
+  autoSync      Boolean      @default(false)
+  syncInterval  Int          @default(5)
+  lastEtlSync   DateTime?
+  status        DeviceStatus @default(Unknown)
+  lastSync      DateTime?
+  lastError     String?
+  isActive      Boolean      @default(true)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  attendanceLogs AttendanceLog[]
+  rawPunchLogs   RawPunchLog[]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// VIRTUAL PUNCH LOG (audit trail for remote/virtual attendance)
+// ─────────────────────────────────────────────────────────────────────────────
+
+model VirtualPunchLog {
+  id            String   @id @default(cuid())
+  employeeId    String
+  date          DateTime @db.Date
+  punchIn       DateTime?
+  punchOut      DateTime?
+  reason        String?
+  approvedById  String?  // Admin/HR who created or approved the virtual login
+  source        String   @default("virtual")  // "virtual" | "admin-override"
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@unique([employeeId, date])
+  @@index([date])
+  @@index([employeeId, date])
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// LEAVES
+// ─────────────────────────────────────────────────────────────────────────────
+
+model LeaveType {
+  id           String   @id @default(cuid())
+  name         String   @unique
+  daysAllowed  Int
+  isUnlimited  Boolean  @default(false)
+  description  String?
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  balances LeaveBalance[]
+  requests LeaveRequest[]
+}
+
+model LeaveBalance {
+  id           String   @id @default(cuid())
+  employeeId   String
+  leaveTypeId  String
+  year         Int
+  allocated    Float    @default(0)
+  used         Float    @default(0)
+  remaining    Float    @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  employee  Employee  @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  leaveType LeaveType @relation(fields: [leaveTypeId], references: [id], onDelete: Cascade)
+
+  @@unique([employeeId, leaveTypeId, year])
+}
+
+enum LeaveRequestStatus {
+  Pending
+  Approved
+  Rejected
+  Cancelled
+}
+
+model LeaveRequest {
+  id             String             @id @default(cuid())
+  employeeId     String
+  leaveTypeId    String
+  fromDate       DateTime           @db.Date
+  toDate         DateTime           @db.Date
+  totalDays      Float
+  reason         String
+  status         LeaveRequestStatus @default(Pending)
+  reviewedById   String?
+  reviewedAt     DateTime?
+  reviewComment  String?
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+
+  employee   Employee  @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  leaveType  LeaveType @relation(fields: [leaveTypeId], references: [id])
+  reviewedBy User?     @relation("LeaveReviewer", fields: [reviewedById], references: [id])
+
+  @@index([employeeId])
+  @@index([status])
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// WFH REQUESTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum WFHMode {
+  WFH
+  Field
+  ClientVisit
+}
+
+enum WFHRequestStatus {
+  Pending
+  Approved
+  Rejected
+}
+
+model WFHRequest {
+  id            String           @id @default(cuid())
+  employeeId    String
+  date          DateTime         @db.Date
+  mode          WFHMode
+  reason        String
+  status        WFHRequestStatus @default(Pending)
+  reviewedById  String?
+  reviewedAt    DateTime?
+  reviewComment String?
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+
+  employee   Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  reviewedBy User?    @relation("WFHReviewer", fields: [reviewedById], references: [id])
+
+  @@index([employeeId, date])
+  @@index([status])
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// HOLIDAYS
+// ─────────────────────────────────────────────────────────────────────────────
+
+enum HolidayType {
+  National
+  Festival
+  CompanyHoliday
+}
+
+model Holiday {
+  id            String      @id @default(cuid())
+  name          String
+  date          DateTime    @db.Date
+  festivalName  String?
+  description   String?
+  holidayType   HolidayType @default(CompanyHoliday)
+  isOptional    Boolean     @default(false)
+  year          Int
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@unique([name, date])
+  @@index([year])
+  @@index([date])
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SHIFTS
+// ─────────────────────────────────────────────────────────────────────────────
+
+model Shift {
+  id                    String   @id @default(cuid())
+  name                  String   @unique
+  startTime             String   @default("09:00")
+  endTime               String   @default("18:00")
+  gracePeriodMinutes    Int      @default(15)
+  halfDayThresholdHours Int      @default(4)
+  isActive              Boolean  @default(true)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  employees Employee[]
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// APP SETTINGS (single row)
+// ─────────────────────────────────────────────────────────────────────────────
+
+model AppSettings {
+  id                        String   @id @default(cuid())
+  allowedEmailDomains       String[] @default([])
+  shiftStart                String   @default("09:00")
+  shiftEnd                  String   @default("18:00")
+  lateThresholdMinutes      Int      @default(15)
+  lateArrivalTime           String   @default("10:00")
+  halfDayThresholdHours     Int      @default(4)
+  workingDays               String[] @default(["Mon", "Tue", "Wed", "Thu", "Fri"])
+  holidays                  Json     @default("[]")
+  smtpHost                  String   @default("")
+  smtpPort                  Int      @default(587)
+  smtpUser                  String   @default("")
+  smtpPass                  String   @default("")
+  smtpFrom                  String   @default("")
+  emailNotificationsEnabled Boolean  @default(false)
+  // App check-in control
+  appCheckInEnabled         Boolean  @default(true)
+  appCheckInScope           String   @default("global")  // "global" | "department" | "employee"
+  appCheckInDepartments     Json     @default("[]")       // string[] — used when scope=department
+  appCheckInEmployeeIds     Json     @default("[]")       // string[] — used when scope=employee
+  // eSSL polling config (managed from DB — not editable by users via app UI)
+  esslEnabled               Boolean  @default(true)
+  esslMode                  String   @default("session")
+  esslProxyUrl              String   @default("https://smarthrms-backend-fggdhde8dvfheygd.centralindia-01.azurewebsites.net")
+  esslServerUrl             String   @default("")
+  esslUserName              String   @default("")
+  esslPassword              String   @default("")
+  esslPollMs                Int      @default(5000)
+  createdAt                 DateTime @default(now())
+  updatedAt                 DateTime @updatedAt
+}

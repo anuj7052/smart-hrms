@@ -1,0 +1,6 @@
+[Version]
+PlatformName = "nodejs"
+PlatformVersion = "20.20.0"
+
+[Directories]
+SourceDirectoryInBuildContainer = "/usr/src/app"

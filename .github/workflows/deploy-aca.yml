@@ -1,0 +1,70 @@
+name: Deploy to Azure Container Apps
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'backend/**'
+      - 'frontend/**'
+      - 'Dockerfile'
+      - '.dockerignore'
+      - '.github/workflows/deploy-aca.yml'
+  workflow_dispatch:
+
+env:
+  ACR: sphereacr21961
+  IMAGE: sphere
+  APP: sphere-app
+  RG: sphere
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+      - name: Azure login
+        uses: azure/login@v2
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Install containerapp extension
+        run: az extension add --name containerapp --upgrade -y
+
+      - name: Build & push image via ACR
+        working-directory: ${{ github.workspace }}
+        run: |
+          TAG="${{ env.IMAGE }}:${{ github.sha }}"
+          az acr build \
+            -r ${{ env.ACR }} \
+            -t "$TAG" -t "${{ env.IMAGE }}:latest" \
+            --build-arg VITE_AZURE_AD_CLIENT_ID="${{ secrets.VITE_AZURE_AD_CLIENT_ID }}" \
+            --build-arg VITE_AZURE_AD_TENANT_ID="${{ secrets.VITE_AZURE_AD_TENANT_ID }}" \
+            --file "${{ github.workspace }}/Dockerfile" \
+            "${{ github.workspace }}"
+          echo "IMAGE_TAG=${{ env.ACR }}.azurecr.io/$TAG" >> $GITHUB_ENV
+
+      - name: Deploy to Container App
+        run: |
+          az containerapp update \
+            -n ${{ env.APP }} \
+            -g ${{ env.RG }} \
+            --image "$IMAGE_TAG" \
+            -o none
+
+      - name: Health check
+        run: |
+          sleep 20
+          URL=$(az containerapp show -n ${{ env.APP }} -g ${{ env.RG }} \
+            --query properties.configuration.ingress.fqdn -o tsv)
+          STATUS=$(curl -sS -o /dev/null -w "%{http_code}" "https://$URL/api/health")
+          echo "Health: $STATUS"
+          [ "$STATUS" = "200" ] || exit 1
